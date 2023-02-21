@@ -1,3 +1,14 @@
+Google Calendar clone-app created with React.js
+
+# Tools
+* HTML
+* Javascript
+* React.js
+* Tailwind
+* dayjs
+* Hooks: useState, useEffect, useContext, useReducer
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -27,18 +27,18 @@ function Header() {
       <h1 className="mr-10 text-xl text-gray-500 font-bold">Calendar</h1>
       <button
         onClick={handleReset}
-        className="border rounded-xl py-2 px-4 mr-5 font-bold text-gray-600 shadow-xl hover:text-blue active:shadow-inner"
+        className="border rounded-xl py-2 px-4 mr-5 font-bold text-gray-600 shadow-xl hover:text-googlebl active:shadow-inner"
       >
         Today
       </button>
       <button onClick={handlePrevMonth}>
-        <span className=" cursor-pointer text-gray-600 mx-2 hover:text-blue">
-          <FaAngleLeft />
+        <span className=" cursor-pointer text-gray-600 mx-2 ">
+          <FaAngleLeft className="hover:text-googlebl" />
         </span>
       </button>
       <button onClick={handleNextMonth}>
-        <span className=" cursor-pointer text-gray-600 mx-2 hover:text-blue">
-          <FaAngleRight />
+        <span className=" cursor-pointer text-gray-600 mx-2 ">
+          <FaAngleRight className="hover:text-googlebl"/>
         </span>
       </button>
       <h2 className="ml-4 text-xl text-gray-500 font-bold">
