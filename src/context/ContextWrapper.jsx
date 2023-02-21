@@ -22,7 +22,7 @@ function initEvents() {
 }
 
 export default function ContextWrapper(props) {
-  
+
   const [monthIndex, setMonthIndex] = useState(dayjs().month());
   const [smallCalendarMonth, setSmallCalendarMonth] = useState(null);
   const [daySelected, setDaySelected] = useState(dayjs());
@@ -30,15 +30,62 @@ export default function ContextWrapper(props) {
   const [selectedEv, setSelectedEv] = useState(null);
   // const [labels, setLabels] = useState([]);
 
+
   const [savedEv, dispatchCalendEv] = useReducer(
     savedEvReducer,
     [],
     initEvents
   );
 
+  //everytime the `savedEvents` change it saves in the local storage with setItem
   useEffect(() => {
     localStorage.setItem("savedEvents", JSON.stringify(savedEv));
   }, [savedEv]);
+
+
+  //to change the month index
+  useEffect(() => {
+    if (smallCalendarMonth !== null) {
+      setMonthIndex(smallCalendarMonth);
+    }
+  }, [smallCalendarMonth]);
+
+  //to clean the Event modal everytime it closes
+  useEffect(()=>{
+if(!showEvModal) {
+  setSelectedEv(null)
+}
+  }, [showEvModal])
+
+  return (
+    <GlobalContext.Provider
+      value={{
+        monthIndex,
+        setMonthIndex,
+
+        smallCalendarMonth,
+        setSmallCalendarMonth,
+
+        daySelected,
+        setDaySelected,
+
+        showEvModal,
+        setShowEvModal,
+
+        dispatchCalendEv,
+        savedEv,
+
+        selectedEv,
+        setSelectedEv,
+
+        // labels,
+        // setLabels
+      }}
+    >
+      {props.children}
+    </GlobalContext.Provider>
+  );
+}
 
   // useEffect(() => {
   //   setLabels((prevLabels) => {
@@ -51,39 +98,3 @@ export default function ContextWrapper(props) {
   //     });
   //   });
   // }, [savedEv]);
-
-  useEffect(() => {
-    if (smallCalendarMonth !== null) {
-      setMonthIndex(smallCalendarMonth);
-    }
-  }, [smallCalendarMonth]);
-
-  useEffect(()=>{
-if(!showEvModal) {
-  setSelectedEv(null)
-}
-  }, [showEvModal])
-
-  return (
-    <GlobalContext.Provider
-      value={{
-        monthIndex,
-        setMonthIndex,
-        smallCalendarMonth,
-        setSmallCalendarMonth,
-        daySelected,
-        setDaySelected,
-        showEvModal,
-        setShowEvModal,
-        dispatchCalendEv,
-        savedEv,
-        selectedEv,
-        setSelectedEv,
-        // labels,
-        // setLabels
-      }}
-    >
-      {props.children}
-    </GlobalContext.Provider>
-  );
-}

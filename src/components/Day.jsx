@@ -3,24 +3,27 @@ import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 function Day({ day, rowIndex }) {
+  const [dayEvents, setDayEvents] = useState([]);
+
+  const { setDaySelected, 
+          setShowEvModal, 
+          savedEv, 
+          setSelectedEv } =
+    useContext(GlobalContext);
+ 
+    useEffect(() => {
+    const events = savedEv.filter(
+      (e) => dayjs(e.day).format("DD-MM-YY") === day.format("DD-MM-YY")
+    );
+    setDayEvents(events);
+  }, [savedEv, day]);
+
 
   function getCurrentDayClass() {
     return day.format("DD-MM-YY") === dayjs().format("DD-MM-YY")
       ? "bg-googlebl text-gray-50 rounded-full w-7"
       : "text-gray-600";
   }
-
-  const [dayEvents, setDayEvents] = useState([]);
-
-  const { setDaySelected, setShowEvModal, savedEv, setSelectedEv } =
-    useContext(GlobalContext);
-
-  useEffect(() => {
-    const events = savedEv.filter(
-      (e) => dayjs(e.day).format("DD-MM-YY") === day.format("DD-MM-YY")
-    );
-    setDayEvents(events);
-  }, [savedEv, day]);
 
   return (
     <div className="border border-gray-200 flex flex-col">

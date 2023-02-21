@@ -3,24 +3,30 @@ import { GrFormClose } from "react-icons/gr";
 import { IoIosColorPalette } from "react-icons/io";
 import { BsCheck } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
+
 import { useContext, useState } from "react";
+
 import GlobalContext from "../context/GlobalContext";
 
 const labelsClasses = [
   "bg-pink-500",
   "bg-indigo-500",
-  "bg-yellow",
+  "bg-googleyel",
   "bg-googlegrn",
   "bg-blue-500",
-  "bg-red",
+  "bg-googlered",
 ];
 
 function EventModal() {
-  const { setShowEvModal, daySelected, selectedEv, dispatchCalendEv } =
+  const { setShowEvModal, 
+    daySelected, 
+    selectedEv, 
+    dispatchCalendEv } =
     useContext(GlobalContext);
 
   const [title, setTitle] = useState(selectedEv ? selectedEv.title : "");
   const [descr, setDescr] = useState(selectedEv ? selectedEv.descr : "");
+
   const [selectedLbl, setSelectedLbl] = useState(
     selectedEv
       ? labelsClasses.find((lbl) => lbl === selectedEv.label)
@@ -29,6 +35,7 @@ function EventModal() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     const calendarEv = {
       title,
       descr,
@@ -41,7 +48,6 @@ function EventModal() {
     } else {
       dispatchCalendEv({ type: "push", payload: calendarEv });
     }
-
     setShowEvModal(false);
   }
 

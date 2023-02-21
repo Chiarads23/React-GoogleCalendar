@@ -1,6 +1,9 @@
-import { useContext } from "react";
 import { FaPlus } from "react-icons/fa";
+
+import { useContext } from "react";
+
 import GlobalContext from "../context/GlobalContext";
+
 
 function CreateEventButton() {
 

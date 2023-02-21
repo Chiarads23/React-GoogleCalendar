@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import GlobalContext from "../context/GlobalContext";
 
 function SmallCalendar() {
-  //local state
+  //local state because is not in sync with the main calendar
   const [currentMonthIndex, setCurrentMonthIndex] = useState(dayjs().month());
   const [currentMonth, setCurrentMonth] = useState(getMonth());
 
@@ -20,8 +20,13 @@ function SmallCalendar() {
     setCurrentMonthIndex(currentMonthIndex + 1);
   }
 
-  const { monthIndex, setSmallCalendarMonth, daySelected, setDaySelected } = useContext(GlobalContext);
 
+  const { monthIndex, 
+    setSmallCalendarMonth, 
+    daySelected, 
+    setDaySelected } = useContext(GlobalContext);
+
+    //so everytime the global month changes, also the small one does
   useEffect(() => {
     setCurrentMonthIndex(monthIndex);
   }, [monthIndex]);
@@ -34,7 +39,7 @@ function SmallCalendar() {
     if (nowDay === currDay) {
       return "bg-googlebl text-gray-50 rounded-full";
     } else if (currDay === slctDay){
-        return 'bg-yellow rounded-full text-[#2463eb] font-bold'
+        return 'bg-googleyel rounded-full text-[#2463eb] font-bold'
     } else {
       return "";
     }
@@ -70,7 +75,7 @@ function SmallCalendar() {
             {day.format("dd").charAt(0)}
           </span>
         ))}
-        {currentMonth.map((row, i, ì) => (
+        {currentMonth.map((row, i) => (
           <React.Fragment key={i}>
             {row.map((day, index) => (
               <button

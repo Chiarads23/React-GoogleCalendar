@@ -14,8 +14,8 @@ module.exports = {
        'googlebl': '#1967d2',
         'black': "#414141",
         'googlegrn': "#34a853",
-        'yellow': "#fbbc04",
-        'red' : '#f72a25'
+        'googleyel': "#fbbc04",
+        'googlered' : '#f72a25'
       },
       gridTemplateColumns: {
         "1/5": "1fr 5fr",
