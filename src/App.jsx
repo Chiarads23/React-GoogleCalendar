@@ -24,7 +24,7 @@ function App() {
     //invisible parent
     <React.Fragment>
       {showEvModal && <EventModal />}
-      <div className="h-screen flex flex-col">
+      <div className="h-screen flex flex-col bg-[#00000033]">
         <Header />
         <div className="flex flex-1">
           <Sidebar />
